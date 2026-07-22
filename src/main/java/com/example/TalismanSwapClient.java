@@ -1,4 +1,4 @@
-package net.fabricmc.example;
+package com.example;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -16,11 +16,12 @@ public class TalismanSwapClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        // Исправленный метод регистрации кнопки для версии 1.21.1
         swapKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.talismanswap.swap",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_X, 
-                "category.talismanswap"
+                KeyBinding.GAMEPLAY_CATEGORY // Используем стандартную категорию игры во избежание ошибок
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
